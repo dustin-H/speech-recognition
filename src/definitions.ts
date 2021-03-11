@@ -4,6 +4,8 @@ declare module "@capacitor/core" {
   }
 }
 
+export type Listeners = "partialResults";
+
 export interface SpeechRecognitionPlugin {
   available(): Promise<{ available: boolean }>;
   start(options?: UtteranceOptions): Promise<{ matches: String[] }>;
@@ -11,6 +13,10 @@ export interface SpeechRecognitionPlugin {
   getSupportedLanguages(): Promise<{ languages: any[] }>;
   hasPermission(): Promise<{ permission: boolean }>;
   requestPermission(): Promise<void>;
+  addListener(
+    eventName: Listeners,
+    callback: (data: { matches: String[] }) => void
+  ): void;
 }
 
 export interface UtteranceOptions {

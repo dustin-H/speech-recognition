@@ -95,7 +95,7 @@ SpeechRecognition.available();
  *        prompt - prompt message to display on popup (Android only)
  *        partialResults - return partial results if found
  *        popup - display popup window when listening for utterance (Android only)
- * @returns void
+ * @returns Promise<{ matches: String[] }> - Returns the final result when stopped
  */
 SpeechRecognition.start({
   language: "en-US",
@@ -103,6 +103,16 @@ SpeechRecognition.start({
   prompt: "Say something",
   partialResults: true,
   popup: true,
+});
+
+/**
+ * This method will get the partialResults if activated on start. (only on iOS)
+ * @param eventName = "partialResults"
+ * @param callback
+ * @returns void
+ */
+SpeechRecognition.addListener("partialResults", (data) => {
+  console.log(">", data.matches);
 });
 
 /**

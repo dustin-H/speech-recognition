@@ -91,16 +91,20 @@ public class SpeechRecognition: CAPPlugin {
                         }
                         counter+=1
                     }
-
-                    call.success([
-                        "matches": resultArray
-                    ])
+                    
+                    if (partialResults) {
+                        self.notifyListeners("partialResults", data: ["matches":resultArray]);
+                    }
 
                     if result!.isFinal {
                         self.audioEngine!.stop()
                         self.audioEngine?.inputNode.removeTap(onBus: 0)
                         self.recognitionTask = nil
                         self.recognitionRequest = nil
+                        
+                        call.success([
+                            "matches": resultArray
+                        ]);
                     }
                 }
 
