@@ -8,14 +8,14 @@ export type Listeners = "partialResults";
 
 export interface SpeechRecognitionPlugin {
   available(): Promise<{ available: boolean }>;
-  start(options?: UtteranceOptions): Promise<{ matches: String[] }>;
+  start(options?: UtteranceOptions): Promise<{ matches: string[] }>;
   stop(): Promise<void>;
   getSupportedLanguages(): Promise<{ languages: any[] }>;
   hasPermission(): Promise<{ permission: boolean }>;
   requestPermission(): Promise<void>;
   addListener(
     eventName: Listeners,
-    callback: (data: { matches: String[] }) => void
+    callback: (data: { matches: string[] }) => void
   ): void;
 }
 

@@ -12,7 +12,7 @@ export class SpeechRecognitionWeb extends WebPlugin
   available(): Promise<{ available: boolean }> {
     throw new Error("Method not implemented.");
   }
-  start(_options?: UtteranceOptions): Promise<{ matches: String[] }> {
+  start(_options?: UtteranceOptions): Promise<{ matches: string[] }> {
     throw new Error("Method not implemented.");
   }
   stop(): Promise<void> {
